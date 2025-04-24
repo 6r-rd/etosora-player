@@ -171,7 +171,8 @@ function parseTimestamps(text) {
       }
       
       // Try to find a delimiter (/ or -) in the text
-      let delimiterMatch = remainingText.match(/\s*([/\-]{1,})\s*/);
+      // Look for specific delimiter patterns with proper whitespace to avoid matching hyphens within words
+      let delimiterMatch = remainingText.match(/\s+(\/+|\-+|\/\/+|\-\-+)\s+/);
       
       if (delimiterMatch) {
         // Extract song title and artist name

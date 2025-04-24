@@ -1,6 +1,8 @@
-# Astro Music Player
+# EtoSora Player
 
-YouTube のアーカイブ動画を再生するための Web サイトです。YouTube Data API を使用して過去の配信データを取得し、タイムスタンプ付きで曲の情報を表示します。
+バーチャルユニット「[エトソラ](https://www.youtube.com/@etosora)」による YouTube ライブ配信のアーカイブ動画を再生するための Web サイトです。YouTube Data API を使用して過去の配信データを取得し、タイムスタンプ付きで曲の情報を表示します。
+
+Demo: https://6r-rd.github.io/etosora-player/
 
 ## 1. Web サイトのユーザー向け情報
 
@@ -10,6 +12,8 @@ YouTube のアーカイブ動画を再生するための Web サイトです。Y
 - **曲ごとの詳細表示**: サイドバーの `Songs` タブから特定の曲が歌われた全ての動画を一覧表示します
 - **タイムスタンプ**: 動画内の特定の曲の開始時間にタイムスタンプを通じて直接ジャンプできます
 - **検索機能**: 曲名やアーティスト名で検索できます
+- **日付フィルター**: 特定の期間の動画や曲を絞り込むことができます
+- **ソート機能**: 動画は日付順、曲は歌われた回数順でソートできます
 
 ### 使い方
 
@@ -17,6 +21,8 @@ YouTube のアーカイブ動画を再生するための Web サイトです。Y
 2. サイドバーの「Archives」タブから視聴したい動画を選択します
 3. または「Songs」タブから曲を選択すると、その曲が歌われた動画一覧が表示されます
 4. 検索ボックスに曲名やアーティスト名を入力して検索できます
+5. 日付フィルターを使用して特定の期間の動画や曲を絞り込むことができます
+6. ランダム選択ボタンを使って、ランダムな動画や曲を選ぶこともできます
 
 ## 2. 開発者向け情報
 
@@ -27,13 +33,14 @@ YouTube のアーカイブ動画を再生するための Web サイトです。Y
 - **[Tailwind CSS](https://tailwindcss.com/)**: スタイリング
 - **[shadcn/ui](https://ui.shadcn.com/)**: UI コンポーネントライブラリ
 - **[YouTube IFrame Player API](https://developers.google.com/youtube/iframe_api_reference)**: 動画再生
+- **[YouTube Data API](https://developers.google.com/youtube/v3/getting-started)**: コメントや動画データの取得
 
 ### 開発環境のセットアップ
 
 ```bash
 # リポジトリのクローン
-git clone https://github.com/yourusername/astro-player.git
-cd astro-player
+git clone https://github.com/6r-rd/etosora-player.git
+cd etosora-player
 
 # 依存関係のインストール
 npm install
@@ -44,24 +51,55 @@ npm run dev
 
 開発サーバーは http://localhost:4321 で起動します。
 
+### 環境変数
+
+#### GitHub Actions
+
+Repository secrets として `YOUTUBE_CHANNEL_ID` としてチャンネル ID を、`YOUTUBE_API_KEY` として YouTube Data API Key を保存してください。
+
+#### ローカル
+
+`.env.example` を参照し、`.env` ファイルに環境変数を書いてください。
+
+npm scripts で動画データのアップデートなどを行う際に YouTube Data API にアクセスする必要があり、そこで利用します。
+
 ### プロジェクト構造
 
 ```
 .
 ├── public/                 # 静的ファイルとデータ
+│   ├── api/                # API レスポンス用のJSONファイル
+│   │   └── videos-list.json # 動画一覧
 │   ├── artists.json        # アーティスト情報
 │   ├── songs.json          # 曲情報
 │   └── videos/             # 動画ごとのJSONファイル
 │       └── [video_id].json # 各動画の詳細情報
 ├── schema/                 # JSONスキーマ定義
+│   ├── artist.schema.json  # アーティストスキーマ
+│   ├── song.schema.json    # 曲スキーマ
+│   └── video.schema.json   # 動画スキーマ
 ├── scripts/                # ユーティリティスクリプト
+│   ├── updateVideoData.js  # 動画データ更新スクリプト
+│   ├── fetchNewVideos.js   # 新規動画取得スクリプト
+│   ├── generateVideosList.js # 動画一覧生成スクリプト
+│   └── validateJsonSchemas.js # JSONスキーマ検証スクリプト
 └── src/                    # ソースコード
     ├── components/         # Reactコンポーネント
+    │   ├── Sidebar.tsx     # サイドバーコンポーネント
+    │   ├── YouTubePlayer.tsx # YouTube再生コンポーネント
     │   └── ui/             # shadcn/uiコンポーネント
     ├── layouts/            # Astroレイアウト
+    │   └── PlayerLayout.astro # プレイヤーレイアウト
     ├── lib/                # ユーティリティ関数
+    │   ├── data.ts         # データ処理関数
+    │   ├── types.ts        # 型定義
+    │   └── utils.ts        # ユーティリティ関数
     ├── pages/              # Astroページ
+    │   ├── index.astro     # トップページ
+    │   ├── video/          # 動画ページ
+    │   └── song/           # 曲ページ
     └── styles/             # グローバルスタイル
+        └── global.css      # グローバルCSS
 ```
 
 ### ビルドとデプロイ
@@ -134,6 +172,10 @@ npm run test:coverage
    - 変更された JSON ファイルのみを検証
    - 設定：`.github/workflows/validate-json.yml`
 
+タイムスタンプの解析には人間の目を使用しています。`Update Video Data` や `Fetch New Videos`, `Backfill` などの GitHub Actions が Pull Request を作成するので、確認してマージすると自動でデプロイされます。事前にリポジトリの設定で GitHub Pages を使えるようにしておいてください。
+
+将来的には GitHub Models で AI にコメント解析してもらうかも...？
+
 ### GitHub Pages へのデプロイ
 
 このプロジェクトは GitHub Pages を使用して自動的にデプロイするように設定されています。
@@ -141,7 +183,7 @@ npm run test:coverage
 1. **設定の確認**
 
    - `astro.config.mjs` ファイルで `base` パスがリポジトリ名と一致していることを確認します
-   - 例: リポジトリ名が `astro-player` の場合、`base: '/astro-player'` と設定します
+   - 例: リポジトリ名が `etosora-player` の場合、`base: '/etosora-player'` と設定します
 
 2. **GitHub リポジトリの設定**
 
@@ -163,10 +205,11 @@ npm run test:coverage
 {
   "songs": [
     {
-      "song_id": "T9nF-qT4Z6p", // 曲の一意のID（11文字）
-      "title": "曲のタイトル", // 曲名
-      "artist_ids": ["mS8q1D_fA7x"], // アーティストIDの配列（複数可）
-      "alternate_titles": ["別名1", "別名2"] // 代替タイトル（オプション）
+      "song_id": "T9nF-qT4Z6p",
+      "title": "曲のタイトル",
+      "artist_ids": ["mS8q1D_fA7x"],
+      "alternate_titles": ["別名1", "別名2"],
+      "description": "曲の説明や追加情報"
     }
   ]
 }
@@ -180,9 +223,10 @@ npm run test:coverage
 {
   "artists": [
     {
-      "artist_id": "mS8q1D_fA7x", // アーティストの一意のID（11文字）
-      "name": "アーティスト名", // アーティスト名
-      "aliases": ["別名1", "別名2"] // 別名（オプション）
+      "artist_id": "mS8q1D_fA7x",
+      "name": "アーティスト名",
+      "aliases": ["別名1", "別名2"],
+      "description": "アーティストの説明"
     }
   ]
 }
@@ -194,19 +238,18 @@ npm run test:coverage
 
 ```json
 {
-  "video_id": "AZ6KhfbTPDk", // YouTubeの動画ID
-  "title": "動画タイトル", // 動画のタイトル
-  "start_datetime": "2025-03-31T18:00:00Z", // 配信開始日時（ISO 8601形式） UTC
-  "thumbnail_url": "https://...", // サムネイルのURL
+  "video_id": "AZ6KhfbTPDk",
+  "title": "動画タイトル",
+  "start_datetime": "2025-03-31T18:00:00Z",
+  "thumbnail_url": "https://...",
   "timestamps": [
-    // タイムスタンプの配列
     {
-      "time": 385, // 動画開始からの秒数
-      "original_time": "00:06:25", // 元の時間表記（HH:MM:SS形式）
-      "song_id": "T9nF-qT4Z6p", // 曲のID（songs.jsonの曲を参照）
-      "comment_source": "comment", // タイムスタンプの出典（"comment"または"description"）
-      "comment_date": "2025-04-01T19:30:00Z", // コメントの日時（オプション）
-      "description": "" // 補足（例: 歌ってみた動画あります https://youtube.com/...
+      "time": 385,
+      "original_time": "00:06:25",
+      "song_id": "T9nF-qT4Z6p",
+      "comment_source": "comment",
+      "comment_date": "2025-04-01T19:30:00Z",
+      "description": "補足情報やリンク"
     }
   ]
 }
@@ -241,6 +284,7 @@ npm run test:coverage
 - **参照整合性**: `song.artist_ids` は必ず `artists.json` に存在する ID を参照してください
 - **必須フィールド**: スキーマで定義された必須フィールドを全て含めてください
 - **日付形式**: 日付は ISO 8601 形式（`YYYY-MM-DDTHH:MM:SSZ`）で記述してください
+- **検索正規化**: 検索は Unicode NFC 正規化 + toLocaleLowerCase('ja') で行い、半角／全角・大小文字を無視します
 
 ##### JSON スキーマ検証
 
@@ -265,12 +309,14 @@ npm run validate-json -- public/videos/videoId.json public/songs.json
 #### 新しい動画の追加手順
 
 1. 動画 ID を確認します（YouTube の URL から取得）
-2. `videos/[video_id].json` ファイルを作成します
-3. 動画のタイトル、公開日時、サムネイル URL を入力します
-4. タイムスタンプ情報を追加します
-   - 各タイムスタンプには、時間と対応する曲の ID が必要です
-   - 曲がまだ `songs.json` に存在しない場合は、先に追加してください
-5. PR を作成してレビューを依頼します
+2. GitHub Actions の "Update Video Data" ワークフローを手動で実行し、動画 ID を入力します
+3. ワークフローが完了すると、以下のファイルが自動的に更新されます：
+   - `videos/[video_id].json` ファイルが作成されます
+   - 新しい曲やアーティストがある場合は、`songs.json` と `artists.json` も更新されます
+   - `api/videos-list.json` が更新され、動画一覧に新しい動画が追加されます
+4. プルリクエストが作成されるので、内容を確認してマージします
+
+`Fetch New Videos` のワークフローが daily で動くので、それを上書きしたい場合に `Update Video Data` を使用してください。
 
 #### 既存データの修正
 
@@ -287,9 +333,3 @@ npm run validate-json -- public/videos/videoId.json public/songs.json
 - 全ての参照（`song.artist_ids` など）が有効であること
 - 必須フィールドが全て入力されていること
 - 日付形式が正しいこと
-
-## 4. ライセンス
-
-MIT © Astro Music Player Contributors
-
----

@@ -1,4 +1,4 @@
-# EtoSora Player
+# EtoSora player
 
 バーチャルユニット「[エトソラ](https://www.youtube.com/@etosora)」による YouTube ライブ配信のアーカイブ動画を再生するための非公式 Web サイトです。YouTube Data API を使用して過去の配信データを取得し、タイムスタンプ付きで曲の情報を表示します。
 

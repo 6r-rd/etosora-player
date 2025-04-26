@@ -51,7 +51,20 @@ jobs:
       - name: Generate videos list
         run: node scripts/generateVideosList.js
 
+      - name: Check for changes in videos directory
+        id: check_changes
+        run: |
+          # 変更があるかどうかを確認（未追跡ファイルを含む）
+          if [[ -n "$(git status --porcelain public/videos/)" ]]; then
+            echo "has_video_changes=true" >> $GITHUB_OUTPUT
+            echo "Changes detected in public/videos/ directory"
+          else
+            echo "has_video_changes=false" >> $GITHUB_OUTPUT
+            echo "No changes detected in public/videos/ directory"
+          fi
+
       - name: Create Pull Request
+        if: steps.check_changes.outputs.has_video_changes == 'true'
         uses: peter-evans/create-pull-request@v5
         with:
           commit-message: "Update video data with new videos"

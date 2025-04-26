@@ -446,7 +446,7 @@ export function Sidebar({ songs, videos, artists, onSelectVideo, onSelectSong, d
                         // Always look up each artist_id in the artists map
                         if (song.artist_ids && song.artist_ids.length > 0) {
                           const names = song.artist_ids.map(id => artists[id] || "").filter(Boolean);
-                          return names.length > 0 ? names.join(", ") : "Unknown Artist";
+                          return names.length > 0 ? names.join(", ") : "";
                         } 
                         // Fallback to artist_names if available
                         else if (song.artist_names && song.artist_names.length > 0) {
@@ -458,7 +458,7 @@ export function Sidebar({ songs, videos, artists, onSelectVideo, onSelectSong, d
                         } 
                         // Final fallback
                         else {
-                          return "Unknown Artist";
+                          return "";
                         }
                       })()}
                     </div>

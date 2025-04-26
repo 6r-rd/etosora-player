@@ -1,9 +1,9 @@
 /**
  * Script to link artists to songs without artists
  * Usage: node linkArtists.js --song "曲名" --artist "アーティスト名"
- *    or: node linkArtists.js --song "曲名とアーティスト名のJSON"
+ *    or: node linkArtists.js --song "曲名とアーティスト名の配列"
  * 
- * JSON Example:
+ * Example:
  * [
  *   {
  *     "artist": "YOASOBI",

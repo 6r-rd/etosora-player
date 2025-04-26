@@ -5,6 +5,10 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { createNamespacedLogger } from './debug.js';
+import dotenv from 'dotenv';
+
+// Load environment variables
+dotenv.config();
 
 // スクリプト用のロガーを作成
 const logger = createNamespacedLogger('script:generateList');
@@ -38,10 +42,11 @@ function generateVideosList() {
     
     logger.log(`Found ${videoIds.length} videos`);
     
-    // Create videos-list.json
+    // Create videos-list.json with channel_id
     const videosListData = {
       videos: videoIds,
-      generated_at: new Date().toISOString()
+      generated_at: new Date().toISOString(),
+      channel_id: process.env.YOUTUBE_CHANNEL_ID || 'unknown'
     };
     
     fs.writeFileSync(VIDEOS_LIST_PATH, JSON.stringify(videosListData, null, 2));

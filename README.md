@@ -4,6 +4,10 @@
 
 Demo: https://6r-rd.github.io/etosora-player/
 
+![PlayerImage](https://github.com/user-attachments/assets/c61044eb-6371-4e2c-acb4-c1cd6e1d172e)
+
+![Songs Image](https://github.com/user-attachments/assets/6f02fd3a-40e8-45b2-b523-92845dd63676)
+
 ## 1. Web サイトのユーザー向け情報
 
 ### 主な機能

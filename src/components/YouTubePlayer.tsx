@@ -352,7 +352,7 @@ export function YouTubePlayer({ videoId, timestamps, startTime: propStartTime }:
                     </HoverPopover>
                   </TableCell>
                   <TableCell>{timestamp.song_title || `Song ${index + 1}`}</TableCell>
-                  <TableCell className="hidden md:table-cell">{timestamp.artist_name || 'Unknown Artist'}</TableCell>
+                  <TableCell className="hidden md:table-cell">{timestamp.artist_name || ''}</TableCell>
                 </TableRow>
               ) : (
                 <TableRow 
@@ -362,7 +362,7 @@ export function YouTubePlayer({ videoId, timestamps, startTime: propStartTime }:
                 >
                   <TableCell className="font-mono">{timestamp.original_time}</TableCell>
                   <TableCell>{timestamp.song_title || `Song ${index + 1}`}</TableCell>
-                  <TableCell className="hidden md:table-cell">{timestamp.artist_name || 'Unknown Artist'}</TableCell>
+                  <TableCell className="hidden md:table-cell">{timestamp.artist_name || ''}</TableCell>
                 </TableRow>
               )
             ))}

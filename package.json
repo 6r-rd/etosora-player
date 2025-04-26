@@ -11,6 +11,7 @@
     "fetch-videos": "node scripts/fetchNewVideos.js",
     "backfill": "node scripts/fetchAllChannelVideos.js",
     "generate-videos-list": "node scripts/generateVideosList.js",
+    "link-artists": "node scripts/linkArtists.js",
     "validate-json": "node scripts/validateJsonSchemas.js",
     "test": "vitest run",
     "test:watch": "vitest",

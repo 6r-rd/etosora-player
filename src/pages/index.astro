@@ -40,7 +40,7 @@ const enrichedSongs = songs.map((song) => {
   return {
     ...song,
     artist_names: artistNames,
-    artist_name: artistNames.join(", ") || "Unknown Artist",
+    artist_name: artistNames.join(", ") || "",
     count: playCounts[song.song_id] || 0,
   };
 });

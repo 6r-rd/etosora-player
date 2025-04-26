@@ -31,8 +31,7 @@
 import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
-import { findOrCreateArtist } from './updateVideoData.js';
-import { generateSongId } from './generateId.js';
+import { generateSongId, generateArtistId } from './generateId.js';
 import { createNamespacedLogger } from './debug.js';
 
 // スクリプト用のロガーを作成
@@ -65,6 +64,42 @@ for (let i = 0; i < args.length; i++) {
 // Load existing data
 const songsData = JSON.parse(fs.readFileSync(SONGS_JSON_PATH, 'utf8'));
 const artistsData = JSON.parse(fs.readFileSync(ARTISTS_JSON_PATH, 'utf8'));
+
+/**
+ * Find or create artist
+ * @param {string} artistName - Artist name
+ * @param {Array} artists - Existing artists
+ * @returns {Object} Artist ID and whether it was newly created
+ */
+function findOrCreateArtist(artistName, artists) {
+  // Normalize artist name for comparison
+  const normalizedName = artistName.normalize('NFC').toLocaleLowerCase('ja');
+  
+  // Check if artist already exists
+  const existingArtist = artists.find(artist => {
+    const artistNameNormalized = artist.name.normalize('NFC').toLocaleLowerCase('ja');
+    if (artistNameNormalized === normalizedName) {
+      return true;
+    }
+    
+    // Check aliases
+    if (artist.aliases) {
+      return artist.aliases.some(alias => 
+        alias.normalize('NFC').toLocaleLowerCase('ja') === normalizedName
+      );
+    }
+    
+    return false;
+  });
+  
+  if (existingArtist) {
+    return { artistId: existingArtist.artist_id, isNew: false };
+  }
+  
+  // Create new artist
+  const artistId = generateArtistId(artists);
+  return { artistId, isNew: true };
+}
 
 /**
  * JSON文字列かどうかを判定する
@@ -243,6 +278,7 @@ try {
 // Export functions for testing
 export {
   isJsonString,
+  findOrCreateArtist,
   processSongArtist,
   processSongArtistList
 };

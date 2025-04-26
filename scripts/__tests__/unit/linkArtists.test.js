@@ -1,8 +1,7 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest';
 import * as fs from 'fs';
-import { isJsonString, processSongArtist, processSongArtistList } from '../../linkArtists.js';
-import { findOrCreateArtist } from '../../updateVideoData.js';
-import { generateSongId } from '../../generateId.js';
+import { isJsonString, findOrCreateArtist, processSongArtist, processSongArtistList } from '../../linkArtists.js';
+import { generateSongId, generateArtistId } from '../../generateId.js';
 
 // Mock dependencies
 vi.mock('fs', () => ({
@@ -11,12 +10,9 @@ vi.mock('fs', () => ({
   existsSync: vi.fn().mockReturnValue(true)
 }));
 
-vi.mock('../../updateVideoData.js', () => ({
-  findOrCreateArtist: vi.fn()
-}));
-
 vi.mock('../../generateId.js', () => ({
-  generateSongId: vi.fn()
+  generateSongId: vi.fn(),
+  generateArtistId: vi.fn()
 }));
 
 vi.mock('../../debug.js', () => ({
@@ -35,6 +31,7 @@ vi.mock('../../linkArtists.js', async (importOriginal) => {
     ...actual,
     // Only export the functions we want to test
     isJsonString: actual.isJsonString,
+    findOrCreateArtist: vi.fn(),
     processSongArtist: actual.processSongArtist,
     processSongArtistList: actual.processSongArtistList
   };

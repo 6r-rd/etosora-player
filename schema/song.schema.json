@@ -14,14 +14,13 @@
       "type": "string",
       "description": "Title of the song"
     },
-    "artist_ids": {
-      "type": "array",
-      "description": "References to artist_id in artists.json",
-      "items": {
-        "type": "string"
-      },
-      "minItems": 1
-    },
+  "artist_ids": {
+    "type": "array",
+    "description": "References to artist_id in artists.json",
+    "items": {
+      "type": "string"
+    }
+  },
     "alternate_titles": {
       "type": "array",
       "description": "Alternative titles or spellings for the song",

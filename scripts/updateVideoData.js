@@ -295,6 +295,11 @@ function findOrCreateSong(songTitle, artistIds, songs) {
     // Check primary title
     const songTitleNormalized = song.title.normalize('NFC').toLocaleLowerCase('ja');
     if (songTitleNormalized === normalizedTitle) {
+      // If either artistIds or song.artist_ids is empty, match by title only
+      if (artistIds.length === 0 || song.artist_ids.length === 0) {
+        return true;
+      }
+      
       // Check if any of the artist IDs match
       const artistMatch = song.artist_ids.some(id => artistIds.includes(id)) ||
                          artistIds.some(id => song.artist_ids.includes(id));
@@ -307,9 +312,16 @@ function findOrCreateSong(songTitle, artistIds, songs) {
     if (song.alternate_titles) {
       return song.alternate_titles.some(title => {
         const altTitleNormalized = title.normalize('NFC').toLocaleLowerCase('ja');
-        return altTitleNormalized === normalizedTitle && 
-               (song.artist_ids.some(id => artistIds.includes(id)) ||
-                artistIds.some(id => song.artist_ids.includes(id)));
+        if (altTitleNormalized === normalizedTitle) {
+          // If either artistIds or song.artist_ids is empty, match by title only
+          if (artistIds.length === 0 || song.artist_ids.length === 0) {
+            return true;
+          }
+          
+          return (song.artist_ids.some(id => artistIds.includes(id)) ||
+                  artistIds.some(id => song.artist_ids.includes(id)));
+        }
+        return false;
       });
     }
     

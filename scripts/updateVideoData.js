@@ -122,9 +122,20 @@ function convertTimeToSeconds(timeStr) {
 /**
  * Parse timestamps from text
  * @param {string} text - Text containing timestamps
+ * @param {string} source - Source of the text ('description' or 'comment')
  * @returns {Array} Array of parsed timestamps
+ * 
+ * 【タイムスタンプ処理の仕様】
+ * 1. 摘要欄（description）のタイムスタンプ:
+ *    - 0秒のタイムスタンプ（0:00, 00:00など）はスキップしない
+ *    - 0秒のタイムスタンプの存在を使って、摘要欄のタイムスタンプがYouTubeのチャプターマーカーであるかを判定する
+ *    - チャプターマーカーと判定された場合のみ、摘要欄のタイムスタンプを優先する
+ * 
+ * 2. コメント（comment）のタイムスタンプ:
+ *    - 0秒のタイムスタンプはスキップする（通常、実際の曲ではなくイントロや説明を示すため）
+ *    - 摘要欄にチャプターマーカーがない場合や、摘要欄にタイムスタンプがない場合に使用する
  */
-function parseTimestamps(text) {
+function parseTimestamps(text, source = 'unknown') {
   // Process line by line
   const lines = text.split('\n');
   const timestamps = [];
@@ -164,11 +175,19 @@ function parseTimestamps(text) {
         timestampLogger.debug(`  Using next line for content: "${remainingText}"`);
       }
       
-      // Skip timestamps that start at 0 seconds (00:00:00) or contain "告知:" (announcement)
-      if (time === 0 || remainingText.includes('告知:')) {
-        timestampLogger.debug(`Skipping timestamp: ${originalTime} (zero seconds or announcement)`);
+      // Skip timestamps that contain "告知:" (announcement)
+      if (remainingText.includes('告知:')) {
+        timestampLogger.debug(`Skipping timestamp: ${originalTime} (announcement)`);
         continue;
       }
+      
+      // Skip 0-second timestamps only for comments
+      if (time === 0 && source === 'comment') {
+        timestampLogger.debug(`Skipping timestamp: ${originalTime} (zero seconds in comment)`);
+        continue;
+      }
+      
+      // Note: We keep 0-second timestamps for descriptions to identify chapter markers
       
       // Try to find a delimiter (/ or -) in the text
       // Look for specific delimiter patterns with proper whitespace to avoid matching hyphens within words
@@ -369,6 +388,24 @@ function updateArtistsJson(artistsData) {
 }
 
 /**
+ * Check if timestamps include a zero timestamp (0:00, 00:00, etc.)
+ * 
+ * 【機能の目的】
+ * 摘要欄のタイムスタンプがYouTubeのチャプターマーカーであるかを判定するために使用する。
+ * チャプターマーカーは必ず0秒から始まるため、0秒のタイムスタンプの存在を確認することで
+ * 摘要欄のタイムスタンプが信頼できるものかどうかを判断できる。
+ * 
+ * @param {Array} timestamps - Array of timestamp objects
+ * @returns {boolean} True if a zero timestamp is found
+ */
+function hasZeroTimestamp(timestamps) {
+  return timestamps.some(ts => 
+    ts.time === 0 || 
+    ts.original_time.match(/^(0:00|00:00|0:00:00|00:00:00)$/)
+  );
+}
+
+/**
  * Process video data and update JSON files
  * @param {string} videoId - YouTube video ID
  */
@@ -392,12 +429,16 @@ async function processVideo(videoId) {
                          thumbnails.default.url;
     
     // Parse timestamps from description
-    const descriptionTimestamps = parseTimestamps(description);
+    const descriptionTimestamps = parseTimestamps(description, 'description');
     timestampLogger.log(`Found ${descriptionTimestamps.length} timestamps in description`);
     
-    // Fetch comments if description doesn't have timestamps
+    // Check if description has a timestamp at 0:00 (indicating chapter markers)
+    const hasZeroTime = hasZeroTimestamp(descriptionTimestamps);
+    timestampLogger.log(`Description has zero timestamp: ${hasZeroTime}`);
+    
+    // Fetch comments if description doesn't have valid timestamps with 0:00 marker
     let commentTimestamps = [];
-    if (descriptionTimestamps.length === 0) {
+    if (descriptionTimestamps.length === 0 || !hasZeroTime) {
       const comments = await fetchVideoComments(videoId);
       commentLogger.log(`Fetched ${comments.length} comments`);
       
@@ -423,7 +464,7 @@ async function processVideo(videoId) {
         const commentText = stripHtml(rawCommentText);
         commentLogger.debug('Processing comment:', commentText.substring(0, 100) + (commentText.length > 100 ? '...' : ''));
         
-        const timestamps = parseTimestamps(commentText);
+        const timestamps = parseTimestamps(commentText, 'comment');
         if (timestamps.length > 0) {
           commentLogger.log('Found timestamps in comment:', timestamps);
           commentTimestamps = [
@@ -440,10 +481,18 @@ async function processVideo(videoId) {
       commentLogger.log(`Found ${commentTimestamps.length} timestamps in comments`);
     }
     
-    // Combine timestamps, prioritizing description
-    const allTimestamps = descriptionTimestamps.length > 0 
+    // タイムスタンプの優先順位決定
+    // 1. 摘要欄に0秒のタイムスタンプがある場合（チャプターマーカーと判断）→ 摘要欄のタイムスタンプを使用
+    // 2. 摘要欄に0秒のタイムスタンプがない場合 → コメントのタイムスタンプを使用（あれば）
+    // 3. コメントにタイムスタンプがない場合 → 摘要欄のタイムスタンプを使用（フォールバック）
+    const allTimestamps = (descriptionTimestamps.length > 0 && hasZeroTime)
       ? descriptionTimestamps 
-      : commentTimestamps;
+      : (commentTimestamps.length > 0 ? commentTimestamps : descriptionTimestamps);
+    
+    timestampLogger.log(`Using ${allTimestamps.length} timestamps from ${
+      (descriptionTimestamps.length > 0 && hasZeroTime) ? 'description' : 
+      (commentTimestamps.length > 0 ? 'comments' : 'description (fallback)')
+    }`);
     
     // Load existing data
     const songsData = loadSongs();
@@ -499,7 +548,9 @@ async function processVideo(videoId) {
         time: timestamp.time,
         original_time: timestamp.original_time,
         song_id: songId,
-        comment_source: descriptionTimestamps.length > 0 ? 'description' : 'comment',
+        comment_source: (descriptionTimestamps.length > 0 && hasZeroTime && allTimestamps === descriptionTimestamps) 
+          ? 'description' 
+          : 'comment',
         comment_date: timestamp.comment_date
       });
     }
@@ -583,6 +634,7 @@ export {
   parseTimestamps,
   findOrCreateArtist,
   findOrCreateSong,
+  hasZeroTimestamp,
   processVideo,
   main
 };

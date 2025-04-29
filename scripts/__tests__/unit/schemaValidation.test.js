@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, it, expect, beforeEach } from 'vitest';
 import Ajv from 'ajv';
 import addFormats from 'ajv-formats';
 import fs from 'fs';

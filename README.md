@@ -149,7 +149,7 @@ GitHub Actions で配信データを取得した後、`public/` 以下の JSON �
 }
 ```
 
-`description` がある場合、ユーザーがタイムスタンプにマウスオーバーした際に popover を表示します。popover をクリックすると description に最初に記載された URL を開きます。
+`description` がある場合、ユーザーが info アイコンにマウスオーバーした際に popover を表示します。popover をクリックすると description に最初に記載された URL を開きます。
 
 ![Image](https://github.com/user-attachments/assets/0ee164af-a847-49a4-9608-8631c2991286)
 
@@ -193,6 +193,6 @@ GitHub Actions で配信データを取得した後、`public/` 以下の JSON �
 }
 ```
 
-`description` がある場合、ユーザーがタイムスタンプにマウスオーバーした際に popover を表示します。popover をクリックすると description に最初に記載された URL を開きます。
+`description` がある場合、ユーザーが info アイコンにマウスオーバーした際に popover を表示します。popover をクリックすると description に最初に記載された URL を開きます。
 
 ![Image](https://github.com/user-attachments/assets/30fa6752-4850-471d-b617-94c88dda1858)

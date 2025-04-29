@@ -135,7 +135,7 @@ const enrichedSongs = songs.map((song) => {
   return {
     ...song,
     artist_names: artistNames,
-    artist_name: artistNames.join(", ") || "Unknown Artist",
+    artist_name: artistNames.join(", ") || "-",
     count: playCounts[song.song_id] || 0,
   };
 });
@@ -156,7 +156,7 @@ if (currentVideo) {
     const song = songs.find((s) => s.song_id === timestamp.song_id);
 
     // Handle multiple artist IDs
-    let artistName = "Unknown Artist";
+    let artistName = "-";
     if (song && song.artist_ids && song.artist_ids.length > 0) {
       const artistNames = song.artist_ids
         .map((id) => {
@@ -165,13 +165,12 @@ if (currentVideo) {
         })
         .filter(Boolean); // Remove empty strings
 
-      artistName =
-        artistNames.length > 0 ? artistNames.join(", ") : "Unknown Artist";
+      artistName = artistNames.length > 0 ? artistNames.join(", ") : "-";
     }
 
     return {
       ...timestamp,
-      song_title: song?.title || "Unknown Song",
+      song_title: song?.title || "-",
       artist_name: artistName,
     };
   });

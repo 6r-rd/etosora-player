@@ -151,14 +151,14 @@ export function getArtistNameById(artists: ArtistData[] | Record<string, string>
       }
     }).filter(Boolean); // Remove empty strings
     
-    return artistNames.length > 0 ? artistNames.join(', ') : 'Unknown Artist';
+    return artistNames.length > 0 ? artistNames.join(', ') : '-';
   } else {
     // Single artist ID
     if (Array.isArray(artists)) {
       const artist = artists.find(a => a.artist_id === artistId);
-      return artist ? artist.name : 'Unknown Artist';
+      return artist ? artist.name : '-';
     } else {
-      return artists[artistId] || 'Unknown Artist';
+      return artists[artistId] || '-';
     }
   }
 }
@@ -286,7 +286,7 @@ export function enrichSongData(
     return {
       ...song,
       artist_names: artistNames,
-      artist_name: artistNames.join(', ') || 'Unknown Artist',
+      artist_name: artistNames.join(', ') || '-',
       count: playCounts[song.song_id] || 0
     };
   });
@@ -300,11 +300,11 @@ export function enrichVideoTimestamps(
 ): VideoData & { enriched_timestamps: Array<VideoTimestamp & { song_title: string; artist_name: string }> } {
   const enrichedTimestamps = video.timestamps.map((timestamp: VideoTimestamp) => {
     const song = getSongById(songs, timestamp.song_id);
-    const artistName = song ? getArtistNameById(artists, song.artist_ids) : 'Unknown Artist';
+    const artistName = song ? getArtistNameById(artists, song.artist_ids) : '-';
     
     return {
       ...timestamp,
-      song_title: song ? song.title : 'Unknown Song',
+      song_title: song ? song.title : '-',
       artist_name: artistName
     };
   });

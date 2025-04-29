@@ -69,7 +69,7 @@ const enrichedSongs = songs.map((song) => {
   return {
     ...song,
     artist_names: artistNames,
-    artist_name: artistNames.join(", ") || "Unknown Artist",
+    artist_name: artistNames.join(", ") || "-",
     count: playCounts[song.song_id] || 0,
   };
 });
@@ -90,8 +90,7 @@ const artistNames = song
       })
       .filter(Boolean)
   : [];
-const artistName =
-  artistNames.length > 0 ? artistNames.join(", ") : "Unknown Artist";
+const artistName = artistNames.length > 0 ? artistNames.join(", ") : "-";
 
 // Get videos containing this song
 const songVideos: Array<VideoData & { timestamp: VideoTimestamp }> = [];

@@ -14,6 +14,7 @@
     "link-artists": "node scripts/linkArtists.js",
     "validate-json": "node scripts/validateJsonSchemas.js",
     "destroy": "node scripts/destroy.js",
+    "find-collab-live": "node scripts/find-collab-live.js",
     "test": "vitest run",
     "test:watch": "vitest",
     "test:ui": "vitest --ui",

@@ -378,7 +378,8 @@
       "song_id": "eLMwh1k0ONu",
       "title": "ネバーフィクション",
       "artist_ids": [
-        "d3cVZOjLMLI"
+        "d3cVZOjLMLI",
+        "dTOUBS9rLnc"
       ]
     },
     {
@@ -2434,6 +2435,20 @@
       "title": "SHINY DAYS",
       "artist_ids": [
         "QY6e_t2Kao2"
+      ]
+    },
+    {
+      "song_id": "WBfNN3dAKJN",
+      "title": "ロキ",
+      "artist_ids": [
+        "aS7Z4ifQW0B"
+      ]
+    },
+    {
+      "song_id": "EBzPoulygLS",
+      "title": "大黒天",
+      "artist_ids": [
+        "_FLbsyH83Ty"
       ]
     }
   ]

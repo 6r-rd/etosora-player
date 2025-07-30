@@ -85,4 +85,32 @@ describe('parseTimestamps', () => {
     const result = parseTimestamps(text);
     expect(result).toEqual([]);
   });
+  
+  it('skips timestamps with "声入り" text', () => {
+    const text = `
+      00:05:00 声入り
+      00:10:30 星を編む / seiza
+      00:15:45 声入り
+      00:20:38 トレモロ / RADWIMPS
+    `;
+    
+    const result = parseTimestamps(text);
+    
+    expect(result).toHaveLength(2);
+    
+    // Should only include actual songs, not "声入り" entries
+    expect(result[0]).toEqual({
+      time: 630, // 10 minutes 30 seconds
+      original_time: '00:10:30',
+      song_title: '星を編む',
+      artist_name: 'seiza'
+    });
+    
+    expect(result[1]).toEqual({
+      time: 1238, // 20 minutes 38 seconds
+      original_time: '00:20:38',
+      song_title: 'トレモロ',
+      artist_name: 'RADWIMPS'
+    });
+  });
 });

@@ -181,6 +181,12 @@ function parseTimestamps(text, source = 'unknown') {
         continue;
       }
       
+      // Skip timestamps that are just "声入り" (with voice)
+      if (remainingText.trim() === '声入り') {
+        timestampLogger.debug(`Skipping timestamp: ${originalTime} (声入り - with voice)`);
+        continue;
+      }
+      
       // Skip 0-second timestamps only for comments
       if (time === 0 && source === 'comment') {
         timestampLogger.debug(`Skipping timestamp: ${originalTime} (zero seconds in comment)`);

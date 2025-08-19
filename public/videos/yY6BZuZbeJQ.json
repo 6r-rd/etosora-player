@@ -1,0 +1,57 @@
+{
+  "video_id": "yY6BZuZbeJQ",
+  "title": "【 #歌枠 】This is 無計画 Karaoke【雲梯マシロ】#エトソラ",
+  "start_datetime": "2025-08-18T05:36:01Z",
+  "thumbnail_url": "https://i.ytimg.com/vi/yY6BZuZbeJQ/maxresdefault_live.jpg",
+  "timestamps": [
+    {
+      "time": 300,
+      "original_time": "00:05:00",
+      "song_id": "sjCH1IhFLSV",
+      "comment_source": "comment",
+      "comment_date": "2025-08-18T13:08:05Z"
+    },
+    {
+      "time": 902,
+      "original_time": "00:15:02",
+      "song_id": "fMNFEeyqV3Q",
+      "comment_source": "comment",
+      "comment_date": "2025-08-18T13:08:05Z"
+    },
+    {
+      "time": 1675,
+      "original_time": "00:27:55",
+      "song_id": "9Tqs2hE0fup",
+      "comment_source": "comment",
+      "comment_date": "2025-08-18T13:08:05Z"
+    },
+    {
+      "time": 2017,
+      "original_time": "00:33:37",
+      "song_id": "nZ7qMJ7XK19",
+      "comment_source": "comment",
+      "comment_date": "2025-08-18T13:08:05Z"
+    },
+    {
+      "time": 2441,
+      "original_time": "00:40:41",
+      "song_id": "Lyu4U05b3Hp",
+      "comment_source": "comment",
+      "comment_date": "2025-08-18T13:08:05Z"
+    },
+    {
+      "time": 2809,
+      "original_time": "00:46:49",
+      "song_id": "vI5r9XRzl1n",
+      "comment_source": "comment",
+      "comment_date": "2025-08-18T13:08:05Z"
+    },
+    {
+      "time": 3119,
+      "original_time": "00:51:59",
+      "song_id": "J3qL-tM7R8s",
+      "comment_source": "comment",
+      "comment_date": "2025-08-18T13:08:05Z"
+    }
+  ]
+}

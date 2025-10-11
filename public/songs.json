@@ -435,7 +435,7 @@
       "artist_ids": [
         "P_zSrMACe92"
       ],
-      "description":"short でエトソラによるカバーあります https://www.youtube.com/shorts/M6f6jJJG_Xo"
+      "description": "short でエトソラによるカバーあります https://www.youtube.com/shorts/M6f6jJJG_Xo"
     },
     {
       "song_id": "InhB0FSbLyR",
@@ -502,7 +502,7 @@
       "artist_ids": [
         "UslWoDg00bC"
       ],
-      "description":"short で雨飼カバーあります https://www.youtube.com/shorts/2aT4FbFxsu8"
+      "description": "short で雨飼カバーあります https://www.youtube.com/shorts/2aT4FbFxsu8"
     },
     {
       "song_id": "z0sN056E0N9",
@@ -1835,7 +1835,7 @@
       "artist_ids": [
         "d3cVZOjLMLI"
       ],
-      "description":"short で雨飼カバーあります https://www.youtube.com/shorts/tL-i_7ahH-Y"
+      "description": "short で雨飼カバーあります https://www.youtube.com/shorts/tL-i_7ahH-Y"
     },
     {
       "song_id": "b55MhKclYzn",
@@ -2561,6 +2561,13 @@
       "title": "修羅",
       "artist_ids": [
         "Qp6L-tM7gY2"
+      ]
+    },
+    {
+      "song_id": "zJWb0O4iPZx",
+      "title": "憂、燦々",
+      "artist_ids": [
+        "lrXn9YFKW61"
       ]
     }
   ]

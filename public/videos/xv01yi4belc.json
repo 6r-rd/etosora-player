@@ -1,0 +1,22 @@
+{
+  "video_id": "xv01yi4belc",
+  "title": "#演出禁止歌枠リレー No.1 エトソラ",
+  "start_datetime": "2025-10-20T11:49:07Z",
+  "thumbnail_url": "https://i.ytimg.com/vi/xv01yi4belc/maxresdefault.jpg",
+  "timestamps": [
+    {
+      "time": 83,
+      "original_time": "00:01:23",
+      "song_id": "InhB0FSbLyR",
+      "comment_source": "comment",
+      "comment_date": "2025-10-20T11:45:54Z"
+    },
+    {
+      "time": 456,
+      "original_time": "00:07:36",
+      "song_id": "nwdXWNHmOFq",
+      "comment_source": "comment",
+      "comment_date": "2025-10-20T11:45:54Z"
+    }
+  ]
+}

@@ -77,7 +77,7 @@ const randomSongId = randomSong?.song_id || "T9nF-qT4Z6p"; // Fallback to existi
     class="flex items-center justify-center h-[calc(100vh-6rem)] overflow-x-hidden w-full"
   >
     <div
-      class="w-full max-w-[100%] sm:max-w-3xl mx-auto p-2 sm:p-6 space-y-8 sm:space-y-12 overflow-hidden"
+      class="w-full max-w-[100%] sm:max-w-3xl mx-auto p-2 sm:p-6 space-y-8 sm:space-y-12 overflow-hidden sm:text-lg text-muted-foreground"
     >
       <p class="text-center">配信で歌った曲名等からアーカイブを検索する</p>
       <div
@@ -98,11 +98,14 @@ const randomSongId = randomSong?.song_id || "T9nF-qT4Z6p"; // Fallback to existi
             <div
               id="search-results"
               class="hidden absolute left-0 right-0 z-10 mt-2 border border-input rounded-md bg-background shadow-lg divide-y divide-border max-h-60 overflow-y-auto"
-            ></div>
+            >
+            </div>
           </div>
         </form>
       </div>
-      <div class="flex flex-col items-center text-center space-y-4">
+      <div
+        class="flex flex-col items-center text-center space-y-4 sm:text-lg text-muted-foreground"
+      >
         <p>ランダムで再生する動画や曲を選択する</p>
         <div class="flex flex-row gap-4 justify-center flex-wrap mt-4">
           <Button id="random-video-btn" className="h-12 px-4">

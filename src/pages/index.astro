@@ -87,7 +87,7 @@ const randomSongId = randomSong?.song_id || "T9nF-qT4Z6p"; // Fallback to existi
           <label class="sr-only" for="search-input"
             >曲名 / アーティスト名を入力</label
           >
-          <div class="space-y-1">
+          <div class="relative space-y-1">
             <input
               id="search-input"
               type="text"
@@ -97,9 +97,8 @@ const randomSongId = randomSong?.song_id || "T9nF-qT4Z6p"; // Fallback to existi
             />
             <div
               id="search-results"
-              class="hidden border border-input rounded-md bg-background shadow-sm divide-y divide-border max-h-60 overflow-y-auto"
-            >
-            </div>
+              class="hidden absolute left-0 right-0 z-10 mt-2 border border-input rounded-md bg-background shadow-lg divide-y divide-border max-h-60 overflow-y-auto"
+            ></div>
           </div>
         </form>
       </div>

@@ -64,8 +64,10 @@ const { title = "EtoSora player" } = Astro.props;
 
       <!-- Main content -->
       <div class="flex flex-1 container w-full">
-        <!-- Sidebar (desktop) -->
-        <aside class="w-96 hidden md:block border-r pt-4 shrink-0">
+        <!-- Sidebar -->
+        <aside
+          class="relative w-0 overflow-hidden md:w-96 md:overflow-visible md:border-r md:pt-4 shrink-0"
+        >
           <slot name="sidebar" />
         </aside>
 
@@ -73,11 +75,6 @@ const { title = "EtoSora player" } = Astro.props;
         <main class="flex-1 p-4">
           <slot />
         </main>
-      </div>
-
-      <!-- Mobile sidebar - rendered outside the main content container -->
-      <div class="md:hidden">
-        <slot name="sidebar" />
       </div>
     </div>
 

@@ -1831,13 +1831,6 @@
       "description": "short で雨飼カバーあります https://www.youtube.com/shorts/tL-i_7ahH-Y"
     },
     {
-      "song_id": "b55MhKclYzn",
-      "title": "世界の約束",
-      "artist_ids": [
-        "dBlqzUF1umi"
-      ]
-    },
-    {
       "song_id": "eqwRoSkjqus",
       "title": "君をのせて",
       "artist_ids": [
@@ -2653,34 +2646,6 @@
       "title": "Mr.Music",
       "artist_ids": [
         "kR8s-Jn3P5w"
-      ]
-    },
-    {
-      "song_id": "DyxfDGluTIY",
-      "title": "誕生日プレゼント紹介",
-      "artist_ids": [
-        "7moC3syhBUB"
-      ]
-    },
-    {
-      "song_id": "TZRiySzvw5s",
-      "title": "世界の約束 (アカペラ)",
-      "artist_ids": [
-        "mAkyF_Hv7Gj"
-      ]
-    },
-    {
-      "song_id": "ZVI28akdjqZ",
-      "title": "点描の唄 (アカペラ)",
-      "artist_ids": [
-        "HuWW_lFmf2l"
-      ]
-    },
-    {
-      "song_id": "DzqOn_WeLOp",
-      "title": "理想論 (アカペラ)",
-      "artist_ids": [
-        "N96X4CNAhob"
       ]
     }
   ]

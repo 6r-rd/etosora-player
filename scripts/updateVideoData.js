@@ -412,12 +412,40 @@ function hasZeroTimestamp(timestamps) {
 }
 
 /**
+ * Parse CLI arguments for the update script
+ * @param {string[]} argv - process.argv array
+ * @returns {{ videoId: string | undefined, forceUserComments: boolean }}
+ */
+function parseCliArgs(argv) {
+  const args = argv.slice(2);
+  let videoId;
+  let forceUserComments = false;
+
+  for (const arg of args) {
+    if (arg === '--user-comment') {
+      forceUserComments = true;
+    } else if (!arg.startsWith('--') && !videoId) {
+      videoId = arg;
+    }
+  }
+
+  return { videoId, forceUserComments };
+}
+
+/**
  * Process video data and update JSON files
  * @param {string} videoId - YouTube video ID
+ * @param {Object} [options]
+ * @param {boolean} [options.forceUserComments=false] - If true, ignore description timestamps
  */
-async function processVideo(videoId) {
+async function processVideo(videoId, options = {}) {
   try {
+    const { forceUserComments = false } = options;
     logger.log(`Processing video: ${videoId}`);
+
+    if (forceUserComments) {
+      timestampLogger.log('Skipping description timestamps due to --user-comment option');
+    }
     
     // Fetch video details
     const videoResponse = await fetchVideoDetails(videoId);
@@ -434,17 +462,21 @@ async function processVideo(videoId) {
                          thumbnails.standard?.url || 
                          thumbnails.default.url;
     
-    // Parse timestamps from description
-    const descriptionTimestamps = parseTimestamps(description, 'description');
-    timestampLogger.log(`Found ${descriptionTimestamps.length} timestamps in description`);
+    // Parse timestamps from description unless forced to use comments
+    const descriptionTimestamps = forceUserComments ? [] : parseTimestamps(description, 'description');
+    if (!forceUserComments) {
+      timestampLogger.log(`Found ${descriptionTimestamps.length} timestamps in description`);
+    }
     
     // Check if description has a timestamp at 0:00 (indicating chapter markers)
-    const hasZeroTime = hasZeroTimestamp(descriptionTimestamps);
-    timestampLogger.log(`Description has zero timestamp: ${hasZeroTime}`);
+    const hasZeroTime = !forceUserComments && hasZeroTimestamp(descriptionTimestamps);
+    if (!forceUserComments) {
+      timestampLogger.log(`Description has zero timestamp: ${hasZeroTime}`);
+    }
     
     // Fetch comments if description doesn't have valid timestamps with 0:00 marker
     let commentTimestamps = [];
-    if (descriptionTimestamps.length === 0 || !hasZeroTime) {
+    if (forceUserComments || descriptionTimestamps.length === 0 || !hasZeroTime) {
       const comments = await fetchVideoComments(videoId);
       commentLogger.log(`Fetched ${comments.length} comments`);
       
@@ -491,14 +523,19 @@ async function processVideo(videoId) {
     // 1. 摘要欄に0秒のタイムスタンプがある場合（チャプターマーカーと判断）→ 摘要欄のタイムスタンプを使用
     // 2. 摘要欄に0秒のタイムスタンプがない場合 → コメントのタイムスタンプを使用（あれば）
     // 3. コメントにタイムスタンプがない場合 → 摘要欄のタイムスタンプを使用（フォールバック）
-    const allTimestamps = (descriptionTimestamps.length > 0 && hasZeroTime)
-      ? descriptionTimestamps 
-      : (commentTimestamps.length > 0 ? commentTimestamps : descriptionTimestamps);
+    const timestampSource = forceUserComments
+      ? 'comments (forced)'
+      : (descriptionTimestamps.length > 0 && hasZeroTime)
+        ? 'description'
+        : (commentTimestamps.length > 0 ? 'comments' : 'description (fallback)');
+
+    const allTimestamps = forceUserComments
+      ? commentTimestamps
+      : (descriptionTimestamps.length > 0 && hasZeroTime)
+        ? descriptionTimestamps 
+        : (commentTimestamps.length > 0 ? commentTimestamps : descriptionTimestamps);
     
-    timestampLogger.log(`Using ${allTimestamps.length} timestamps from ${
-      (descriptionTimestamps.length > 0 && hasZeroTime) ? 'description' : 
-      (commentTimestamps.length > 0 ? 'comments' : 'description (fallback)')
-    }`);
+    timestampLogger.log(`Using ${allTimestamps.length} timestamps from ${timestampSource}`);
     
     // Load existing data
     const songsData = loadSongs();
@@ -554,9 +591,7 @@ async function processVideo(videoId) {
         time: timestamp.time,
         original_time: timestamp.original_time,
         song_id: songId,
-        comment_source: (descriptionTimestamps.length > 0 && hasZeroTime && allTimestamps === descriptionTimestamps) 
-          ? 'description' 
-          : 'comment',
+        comment_source: timestampSource.startsWith('description') ? 'description' : 'comment',
         comment_date: timestamp.comment_date
       });
     }
@@ -597,12 +632,12 @@ async function processVideo(videoId) {
 // Main function
 async function main() {
   try {
-    const videoId = process.argv[2];
+    const { videoId, forceUserComments } = parseCliArgs(process.argv);
     if (!videoId) {
       throw new Error('Video ID is required as a command line argument');
     }
     
-    await processVideo(videoId);
+    await processVideo(videoId, { forceUserComments });
     
     // Generate videos list after processing the video
     logger.log('Generating videos list...');

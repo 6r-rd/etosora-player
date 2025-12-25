@@ -54,8 +54,8 @@
   },
   "devDependencies": {
     "@types/node": "^20.11.0",
-    "@vitest/coverage-v8": "^2.1.9",
-    "@vitest/ui": "^2.1.9",
+    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
     "ajv": "^8.17.1",
     "ajv-formats": "^2.1.1",
     "chalk": "^5.6.2",
@@ -63,7 +63,7 @@
     "glob": "^13.0.0",
     "ts-node": "^10.9.2",
     "typescript": "^5.3.3",
-    "vitest": "^2.1.9",
+    "vitest": "^4.0.16",
     "vitest-mock-extended": "^3.1.0"
   }
 }

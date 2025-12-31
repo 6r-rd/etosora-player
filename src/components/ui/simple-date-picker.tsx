@@ -128,7 +128,7 @@ export function SimpleDatePicker({
               locale={ja}
               className="[&_table]:mt-0"
               components={{
-                Caption: () => null
+                MonthCaption: () => null
               }}
             />
           </div>

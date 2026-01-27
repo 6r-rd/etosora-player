@@ -34,7 +34,7 @@
     "@radix-ui/react-tooltip": "^1.2.0",
     "@tailwindcss/vite": "^4.1.18",
     "@types/canvas-confetti": "^1.9.0",
-    "@types/react": "^19.2.7",
+    "@types/react": "^19.2.8",
     "@types/react-dom": "^19.2.3",
     "astro": "^5.16.9",
     "canvas-confetti": "^1.9.3",

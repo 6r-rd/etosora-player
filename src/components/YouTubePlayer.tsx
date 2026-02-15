@@ -1,11 +1,10 @@
 import { useEffect, useState, useRef } from "react";
 import { Table, TableBody, TableCell, TableHead, TableHeader, TableRow } from "@/components/ui/table";
-import { Slider } from "@/components/ui/slider";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import { HoverPopover } from "@/components/ui/hover-popover";
 import { Progress } from "@/components/ui/progress";
 import { Info } from "lucide-react";
 import { createNamespacedLogger } from "@/lib/debug";
+import { getDescriptionPreview } from "@/lib/descriptionPreview";
 
 // YouTubePlayer コンポーネント用のロガーを作成
 const logger = createNamespacedLogger('ui:player');
@@ -254,31 +253,6 @@ export function YouTubePlayer({ videoId, timestamps, startTime: propStartTime }:
     };
   }, [startTime, jumpToTimestamp]);
 
-
-  // 最初の URL を抽出する関数
-  const extractFirstUrl = (text: string): string | null => {
-    if (!text) return null;
-    const urlRegex = /(https?:\/\/[^\s]+)/g;
-    const match = text.match(urlRegex);
-    return match ? match[0] : null;
-  };
-  
-  // URL を短く表示する関数
-  const formatDescription = (text: string): string => {
-    if (!text) return '';
-    
-    return text.replace(/(https?:\/\/[^\s]+)/g, (url) => {
-      try {
-        // URL を短く表示（例：https://example.com/...）
-        const urlObj = new URL(url);
-        return `${urlObj.origin}/...`;
-      } catch (e) {
-        // 無効な URL の場合は元のテキストを返す
-        return url;
-      }
-    });
-  };
-
   return (
     <div className="flex flex-col space-y-4">
       {/* YouTube Player */}
@@ -319,8 +293,15 @@ export function YouTubePlayer({ videoId, timestamps, startTime: propStartTime }:
             </TableRow>
           </TableHeader>
           <TableBody>
-            {timestamps.map((timestamp, index) => (
-              timestamp.description ? (
+            {timestamps.map((timestamp, index) => {
+              const descriptionPreview = timestamp.description
+                ? getDescriptionPreview(timestamp.description)
+                : null;
+              const descriptionText = descriptionPreview?.text || "関連リンク";
+              const thumbnailCandidates = descriptionPreview?.youtubeThumbnailCandidates || [];
+              const hasExternalLink = Boolean(descriptionPreview?.firstUrl);
+
+              return timestamp.description ? (
                 <TableRow 
                   key={index}
                   className={`cursor-pointer relative group hover:bg-muted/50 ${currentSongIndex === index ? 'bg-primary/10' : ''}`}
@@ -332,18 +313,46 @@ export function YouTubePlayer({ videoId, timestamps, startTime: propStartTime }:
                     <HoverPopover
                       side="left"
                       align="start"
-                      contentClassName="max-w-[350px] p-4 break-words"
+                      contentClassName={`w-[320px] max-w-[calc(100vw-2rem)] p-0 overflow-hidden ${hasExternalLink ? "" : "cursor-default"}`}
                       onContentClick={(e: React.MouseEvent) => {
                         e.stopPropagation();
-                        const firstUrl = extractFirstUrl(timestamp.description || '');
-                        if (firstUrl) {
-                          window.open(firstUrl, '_blank', 'noopener,noreferrer');
+                        if (descriptionPreview?.firstUrl) {
+                          window.open(descriptionPreview.firstUrl, '_blank', 'noopener,noreferrer');
                         }
                       }}
                       content={
-                        <p className="text-sm whitespace-normal">
-                          {formatDescription(timestamp.description || '')}
-                        </p>
+                        <div className="w-full">
+                          <p className="px-3 py-2 text-sm whitespace-pre-wrap break-words">
+                            {descriptionText}
+                          </p>
+                          {thumbnailCandidates.length > 0 && (
+                            <div className="aspect-video w-full overflow-hidden bg-muted">
+                              <img
+                                src={thumbnailCandidates[0]}
+                                alt="YouTube cover thumbnail"
+                                className="h-full w-full object-cover"
+                                loading="lazy"
+                                data-thumbnail-index="0"
+                                onError={(event) => {
+                                  const image = event.currentTarget;
+                                  const currentIndex = Number(image.dataset.thumbnailIndex || "0");
+                                  const nextIndex = currentIndex + 1;
+
+                                  if (nextIndex < thumbnailCandidates.length) {
+                                    image.dataset.thumbnailIndex = `${nextIndex}`;
+                                    image.src = thumbnailCandidates[nextIndex];
+                                    return;
+                                  }
+
+                                  const thumbnailWrapper = image.parentElement;
+                                  if (thumbnailWrapper) {
+                                    thumbnailWrapper.classList.add("hidden");
+                                  }
+                                }}
+                              />
+                            </div>
+                          )}
+                        </div>
                       }
                     >
                       <span className="inline-block ml-2 cursor-pointer">
@@ -364,8 +373,8 @@ export function YouTubePlayer({ videoId, timestamps, startTime: propStartTime }:
                   <TableCell>{timestamp.song_title || `Song ${index + 1}`}</TableCell>
                   <TableCell className="hidden md:table-cell">{timestamp.artist_name || ''}</TableCell>
                 </TableRow>
-              )
-            ))}
+              );
+            })}
             {timestamps.length === 0 && (
               <TableRow>
                 <TableCell colSpan={3} className="text-center py-4 text-muted-foreground">

@@ -9,6 +9,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { execSync } from 'child_process';
+import { generateSidebarData } from './generateSidebarData.js';
 import { generateVideosList } from './generateVideosList.js';
 import { createNamespacedLogger } from './debug.js';
 import { loadExcludedVideoIds } from './excludedVideoIds.js';
@@ -196,6 +197,8 @@ async function main() {
     if (successCount > 0) {
       logger.log('Generating videos list...');
       generateVideosList();
+      logger.log('Generating sidebar data...');
+      generateSidebarData();
     }
     
   } catch (error) {

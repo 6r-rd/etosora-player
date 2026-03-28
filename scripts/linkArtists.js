@@ -32,6 +32,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { generateSongId, generateArtistId } from './generateId.js';
+import { generateSidebarData } from './generateSidebarData.js';
 import { createNamespacedLogger } from './debug.js';
 
 // スクリプト用のロガーを作成
@@ -267,6 +268,9 @@ try {
     // Save updated artists.json
     fs.writeFileSync(ARTISTS_JSON_PATH, JSON.stringify(artistsData, null, 2));
     logger.log(`Updated artists JSON: ${ARTISTS_JSON_PATH}`);
+
+    logger.log('Generating sidebar data...');
+    generateSidebarData();
   } else {
     logger.log('No changes were made');
   }

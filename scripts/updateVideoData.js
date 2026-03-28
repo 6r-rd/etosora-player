@@ -12,6 +12,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { fileURLToPath } from 'url';
 import { generateArtistId, generateSongId } from './generateId.js';
+import { generateSidebarData } from './generateSidebarData.js';
 import { generateVideosList } from './generateVideosList.js';
 import { createNamespacedLogger, createChildLogger } from './debug.js';
 
@@ -642,6 +643,8 @@ async function main() {
     // Generate videos list after processing the video
     logger.log('Generating videos list...');
     generateVideosList();
+    logger.log('Generating sidebar data...');
+    generateSidebarData();
     
   } catch (error) {
     logger.error('Error:', error);

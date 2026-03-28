@@ -2,76 +2,28 @@
 import PlayerLayout from "../layouts/PlayerLayout.astro";
 import { Sidebar } from "../components/Sidebar";
 import { Button } from "@/components/ui/button";
-import type { ArtistData, SongData, VideoData } from "../lib/types";
+import type { SongData } from "../lib/types";
 
-// Import JSON files directly
-import artistsJson from "../../public/artists.json";
+import videosListJson from "../../public/api/videos-list.json";
 import songsJson from "../../public/songs.json";
 
-// Dynamically import all video JSON files
-const videoModules = import.meta.glob("../../public/videos/*.json", {
-  eager: true,
-});
-const videos = Object.values(videoModules) as VideoData[];
-
-// Process data
-const artists = artistsJson.artists as ArtistData[];
 const songs = songsJson.songs as SongData[];
+const videoIds = videosListJson.videos || [];
+const sidebarDataUrl = `${import.meta.env.BASE_URL}/api/sidebar-data.json`;
 
-// Calculate song play counts
-const playCounts: Record<string, number> = {};
-videos.forEach((video) => {
-  video.timestamps.forEach((timestamp) => {
-    const songId = timestamp.song_id;
-    playCounts[songId] = (playCounts[songId] || 0) + 1;
-  });
-});
+const randomVideoId =
+  videoIds.length > 0
+    ? videoIds[Math.floor(Math.random() * videoIds.length)]
+    : "AZ6KhfbTPDk";
 
-// Enrich song data with artist names and play counts
-const enrichedSongs = songs.map((song) => {
-  // Handle multiple artist IDs
-  const artistNames = song.artist_ids
-    .map((id) => {
-      const artist = artists.find((a) => a.artist_id === id);
-      return artist ? artist.name : "";
-    })
-    .filter(Boolean); // Remove empty strings
-
-  return {
-    ...song,
-    artist_names: artistNames,
-    artist_name: artistNames.join(", ") || "",
-    count: playCounts[song.song_id] || 0,
-  };
-});
-
-// Create artists map for the sidebar
-const artistsMap: Record<string, string> = {};
-artists.forEach((artist) => {
-  artistsMap[artist.artist_id] = artist.name;
-});
-
-// Get a random video and song for the sample buttons
-const randomVideo =
-  videos.length > 0 ? videos[Math.floor(Math.random() * videos.length)] : null;
-
-const randomSong =
-  enrichedSongs.length > 0
-    ? enrichedSongs[Math.floor(Math.random() * enrichedSongs.length)]
-    : null;
-
-const randomVideoId = randomVideo?.video_id || "AZ6KhfbTPDk"; // Fallback to existing ID
-const randomSongId = randomSong?.song_id || "T9nF-qT4Z6p"; // Fallback to existing ID
+const randomSongId =
+  songs.length > 0
+    ? songs[Math.floor(Math.random() * songs.length)].song_id
+    : "T9nF-qT4Z6p";
 ---
 
 <PlayerLayout title="EtoSora player">
-  <Sidebar
-    slot="sidebar"
-    videos={videos}
-    songs={enrichedSongs}
-    artists={artistsMap}
-    client:load
-  />
+  <Sidebar slot="sidebar" dataUrl={sidebarDataUrl} client:load />
 
   <div
     class="flex items-center justify-center h-[calc(100vh-6rem)] overflow-x-hidden w-full"
@@ -127,63 +79,55 @@ const randomSongId = randomSong?.song_id || "T9nF-qT4Z6p"; // Fallback to existi
         </div>
       </div>
 
-      <script
-        define:vars={{
-          videos,
-          enrichedSongs,
-          basePath: import.meta.env.BASE_URL,
-        }}
-      >
-        // Function to get a random item from an array
+      <script define:vars={{ basePath: import.meta.env.BASE_URL }}>
         function getRandomItem(array) {
           return array[Math.floor(Math.random() * array.length)];
         }
 
-        // Function to update random video link
-        function updateRandomVideoLink(e) {
-          e.preventDefault();
-          if (videos.length === 0) return;
+        function updateRandomVideoLink(event) {
+          event.preventDefault();
+          if (!window.sidebarVideoIds || window.sidebarVideoIds.length === 0) {
+            return;
+          }
 
-          const randomVideo = getRandomItem(videos);
-          const randomVideoId = randomVideo.video_id;
+          const randomVideoId = getRandomItem(window.sidebarVideoIds);
           const link = document.getElementById("random-video-link");
           link.href = `${basePath}/video/${randomVideoId}`;
           window.location.href = link.href;
         }
 
-        // Function to update random song link
-        function updateRandomSongLink(e) {
-          e.preventDefault();
-          if (enrichedSongs.length === 0) return;
+        function updateRandomSongLink(event) {
+          event.preventDefault();
+          if (!window.sidebarSongs || window.sidebarSongs.length === 0) {
+            return;
+          }
 
-          const randomSong = getRandomItem(enrichedSongs);
+          const randomSong = getRandomItem(window.sidebarSongs);
           const randomSongId = randomSong.song_id;
           const link = document.getElementById("random-song-link");
           link.href = `${basePath}/song/${randomSongId}`;
           window.location.href = link.href;
         }
 
-        // Normalize text similar to Sidebar search
         function normalizeText(text) {
           if (!text) return "";
           return text.normalize("NFC").toLocaleLowerCase("ja");
         }
 
-        // Find matching songs for incremental search (all matches, scrollable list)
         function getMatchingSongs(query) {
           const normalizedQuery = normalizeText(query);
           if (!normalizedQuery) return [];
 
-          return enrichedSongs.filter((song) => {
+          return (window.sidebarSongs || []).filter((song) => {
             const titleMatch = normalizeText(song.title).includes(
-              normalizedQuery
+              normalizedQuery,
             );
-            const artistMatch = normalizeText(
-              (song.artist_names || []).join(", ")
-            ).includes(normalizedQuery);
+            const artistMatch = normalizeText(song.artist_name || "").includes(
+              normalizedQuery,
+            );
             const altMatch = Array.isArray(song.alternate_titles)
               ? song.alternate_titles.some((alt) =>
-                  normalizeText(alt).includes(normalizedQuery)
+                  normalizeText(alt).includes(normalizedQuery),
                 )
               : false;
 
@@ -210,9 +154,9 @@ const randomSongId = randomSong?.song_id || "T9nF-qT4Z6p"; // Fallback to existi
                   data-song-id="${song.song_id}"
                 >
                   <div class="font-medium leading-tight">${song.title}</div>
-                  <div class="text-sm text-muted-foreground leading-tight">${(song.artist_names || []).join(", ")}</div>
+                  <div class="text-sm text-muted-foreground leading-tight">${song.artist_name || ""}</div>
                 </button>
-              `
+              `,
             )
             .join("");
 
@@ -224,7 +168,7 @@ const randomSongId = randomSong?.song_id || "T9nF-qT4Z6p"; // Fallback to existi
           const input = document.getElementById("search-input");
           if (!input) return;
 
-          const matches = getMatchingSongs(input.value, 1);
+          const matches = getMatchingSongs(input.value);
           const songId = matches[0]?.song_id;
           if (songId) {
             window.location.href = `${basePath}/song/${songId}`;
@@ -233,8 +177,58 @@ const randomSongId = randomSong?.song_id || "T9nF-qT4Z6p"; // Fallback to existi
           }
         }
 
-        // Add event listeners
+        async function loadSearchData() {
+          try {
+            const [songsResponse, artistsResponse] = await Promise.all([
+              fetch(`${basePath}/songs.json`),
+              fetch(`${basePath}/artists.json`),
+            ]);
+            if (!songsResponse.ok || !artistsResponse.ok) {
+              throw new Error("Failed to load search data");
+            }
+
+            const songsJson = await songsResponse.json();
+            const artistsJson = await artistsResponse.json();
+            const artistsMap = {};
+
+            (artistsJson.artists || []).forEach((artist) => {
+              artistsMap[artist.artist_id] = artist.name;
+            });
+
+            window.sidebarSongs = (songsJson.songs || []).map((song) => {
+              const artistNames = (song.artist_ids || [])
+                .map((id) => artistsMap[id] || "")
+                .filter(Boolean);
+
+              return {
+                ...song,
+                artist_name: artistNames.join(", "),
+              };
+            });
+          } catch (error) {
+            console.error("[search] Failed to load search data", error);
+            window.sidebarSongs = [];
+          }
+        }
+
+        async function loadVideoIds() {
+          try {
+            const response = await fetch(`${basePath}/api/videos-list.json`);
+            if (!response.ok) {
+              throw new Error("Failed to load video ids");
+            }
+
+            const videosJson = await response.json();
+            window.sidebarVideoIds = videosJson.videos || [];
+          } catch (error) {
+            console.error("[random] Failed to load video ids", error);
+            window.sidebarVideoIds = [];
+          }
+        }
+
         document.addEventListener("DOMContentLoaded", () => {
+          Promise.all([loadSearchData(), loadVideoIds()]);
+
           const videoBtn = document.getElementById("random-video-btn");
           const songBtn = document.getElementById("random-song-btn");
           const searchForm = document.getElementById("search-form");

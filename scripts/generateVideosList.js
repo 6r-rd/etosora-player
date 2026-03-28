@@ -35,7 +35,7 @@ function generateVideosList() {
   try {
     // Get all JSON files in the videos directory
     const files = fs.readdirSync(VIDEOS_DIR);
-    const jsonFiles = files.filter(file => file.endsWith('.json'));
+    const jsonFiles = files.filter(file => file.endsWith('.json')).sort();
     
     // Extract video IDs from filenames
     const videoIds = jsonFiles.map(file => file.replace('.json', ''));
@@ -45,11 +45,10 @@ function generateVideosList() {
     // Create videos-list.json with channel_id
     const videosListData = {
       videos: videoIds,
-      generated_at: new Date().toISOString(),
       channel_id: process.env.YOUTUBE_CHANNEL_ID || 'unknown'
     };
     
-    fs.writeFileSync(VIDEOS_LIST_PATH, JSON.stringify(videosListData, null, 2));
+    fs.writeFileSync(VIDEOS_LIST_PATH, `${JSON.stringify(videosListData, null, 2)}\n`);
     
     logger.log(`Generated videos-list.json with ${videoIds.length} videos`);
   } catch (error) {

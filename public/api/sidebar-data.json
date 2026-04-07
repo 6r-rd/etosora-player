@@ -3488,6 +3488,49 @@
       ]
     },
     {
+      "video_id": "4GfdNYcEKns",
+      "title": "【 #歌枠 】春【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-04-07T01:31:33Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/4GfdNYcEKns/maxresdefault.jpg",
+      "timestamps": [
+        {
+          "song_id": "EAwHcjGAccy",
+          "time": 339,
+          "original_time": "00:05:39"
+        },
+        {
+          "song_id": "X2ICBMk8_BE",
+          "time": 602,
+          "original_time": "00:10:02"
+        },
+        {
+          "song_id": "TZyuCVZXoNA",
+          "time": 989,
+          "original_time": "00:16:29"
+        },
+        {
+          "song_id": "F1hxljBDcL0",
+          "time": 1800,
+          "original_time": "00:30:00"
+        },
+        {
+          "song_id": "LXS-Jjnmt24",
+          "time": 2036,
+          "original_time": "00:33:56"
+        },
+        {
+          "song_id": "h5jSCVyCujW",
+          "time": 2382,
+          "original_time": "00:39:42"
+        },
+        {
+          "song_id": "03DUm9oigh9",
+          "time": 2765,
+          "original_time": "00:46:05"
+        }
+      ]
+    },
+    {
       "video_id": "5PTPO8PLt-M",
       "title": "【 #歌枠 】✧ 徒然なるままに ＃2 ✧【雨飼ミヅキ】",
       "start_datetime": "2024-01-28T06:55:07Z",

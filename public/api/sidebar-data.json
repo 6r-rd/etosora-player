@@ -2801,6 +2801,34 @@
       "artist_ids": [
         "jVrxN2fYOBA"
       ]
+    },
+    {
+      "song_id": "RRJRlYFHOkt",
+      "title": "Amare",
+      "artist_ids": [
+        "7moC3syhBUB"
+      ]
+    },
+    {
+      "song_id": "XJHk3jplQcD",
+      "title": "Bluestar",
+      "artist_ids": [
+        "7moC3syhBUB"
+      ]
+    },
+    {
+      "song_id": "Ad-8lSxMrYE",
+      "title": "夢と微睡み",
+      "artist_ids": [
+        "7moC3syhBUB"
+      ]
+    },
+    {
+      "song_id": "hCFFf2sZpoG",
+      "title": "多分、透明だった僕らは",
+      "artist_ids": [
+        "7moC3syhBUB"
+      ]
     }
   ],
   "artists": {
@@ -6791,6 +6819,34 @@
           "song_id": "7hXS-TOes7h",
           "time": 2752,
           "original_time": "00:45:52"
+        }
+      ]
+    },
+    {
+      "video_id": "czJS9vby10U",
+      "title": "【第5回 #vtuberオリキョクノウタゲ 】夢と現世の透間で唄う。【エトソラ】",
+      "start_datetime": "2026-04-19T00:12:40Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/czJS9vby10U/maxresdefault.jpg",
+      "timestamps": [
+        {
+          "song_id": "RRJRlYFHOkt",
+          "time": 52,
+          "original_time": "00:00:52"
+        },
+        {
+          "song_id": "XJHk3jplQcD",
+          "time": 290,
+          "original_time": "00:04:50"
+        },
+        {
+          "song_id": "Ad-8lSxMrYE",
+          "time": 651,
+          "original_time": "00:10:51"
+        },
+        {
+          "song_id": "hCFFf2sZpoG",
+          "time": 921,
+          "original_time": "00:15:21"
         }
       ]
     },

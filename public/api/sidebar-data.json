@@ -6795,6 +6795,34 @@
       ]
     },
     {
+      "video_id": "czJS9vby10U",
+      "title": "【第5回 #vtuberオリキョクノウタゲ 】夢と現世の透間で唄う。【エトソラ】",
+      "start_datetime": "2026-04-19T00:12:40Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/czJS9vby10U/maxresdefault.jpg",
+      "timestamps": [
+        {
+          "song_id": "m50cgd6Rce6",
+          "time": 52,
+          "original_time": "00:00:52"
+        },
+        {
+          "song_id": "7H0CuQBEUCV",
+          "time": 290,
+          "original_time": "00:04:50"
+        },
+        {
+          "song_id": "bGeOYQQkde-",
+          "time": 651,
+          "original_time": "00:10:51"
+        },
+        {
+          "song_id": "l-OxN_YAbMr",
+          "time": 921,
+          "original_time": "00:15:21"
+        }
+      ]
+    },
+    {
       "video_id": "dbiTJfYuxCU",
       "title": "【 #歌枠 】あの雲を追いかけて【雲梯マシロ】#エトソラ",
       "start_datetime": "2024-03-26T00:17:38Z",

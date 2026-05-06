@@ -2801,6 +2801,27 @@
       "artist_ids": [
         "jVrxN2fYOBA"
       ]
+    },
+    {
+      "song_id": "mu3T1IUxpPp",
+      "title": "過眠",
+      "artist_ids": [
+        "NxVLpQzQem8"
+      ]
+    },
+    {
+      "song_id": "QoOF1jhPc80",
+      "title": "六月は雨上がりの街を書く",
+      "artist_ids": [
+        "Qp6L-tM7gY2"
+      ]
+    },
+    {
+      "song_id": "H_BQim150PW",
+      "title": "告知",
+      "artist_ids": [
+        "7moC3syhBUB"
+      ]
     }
   ],
   "artists": {
@@ -5332,6 +5353,44 @@
           "song_id": "03DUm9oigh9",
           "time": 3053,
           "original_time": "00:50:53"
+        }
+      ]
+    },
+    {
+      "video_id": "PTYLSJSYuA8",
+      "title": "【 #歌枠 】きままに【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-05-06T01:41:55Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/PTYLSJSYuA8/maxresdefault.jpg",
+      "timestamps": [
+        {
+          "song_id": "mu3T1IUxpPp",
+          "time": 465,
+          "original_time": "00:07:45"
+        },
+        {
+          "song_id": "v9CsFTHXl3b",
+          "time": 1039,
+          "original_time": "00:17:19"
+        },
+        {
+          "song_id": "FpMpMum4zJt",
+          "time": 1791,
+          "original_time": "00:29:51"
+        },
+        {
+          "song_id": "QoOF1jhPc80",
+          "time": 2548,
+          "original_time": "00:42:28"
+        },
+        {
+          "song_id": "VurYY-VsTEa",
+          "time": 3110,
+          "original_time": "00:51:50"
+        },
+        {
+          "song_id": "H_BQim150PW",
+          "time": 3480,
+          "original_time": "00:58:00"
         }
       ]
     },

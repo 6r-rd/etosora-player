@@ -4,6 +4,8 @@ updates:
     directory: "/"
     schedule:
       interval: "weekly"
+    cooldown:
+      default-days: 30
   - package-ecosystem: "npm"
     directory: "/"
     schedule:
@@ -13,3 +15,7 @@ updates:
         patterns:
           - "vitest"
           - "@vitest/*"
+    cooldown:
+      semver-major-days: 45
+      semver-minor-days: 30
+      semver-patch-days: 14

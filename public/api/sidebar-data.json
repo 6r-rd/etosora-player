@@ -2815,13 +2815,6 @@
       "artist_ids": [
         "Qp6L-tM7gY2"
       ]
-    },
-    {
-      "song_id": "H_BQim150PW",
-      "title": "告知",
-      "artist_ids": [
-        "7moC3syhBUB"
-      ]
     }
   ],
   "artists": {
@@ -5386,11 +5379,6 @@
           "song_id": "VurYY-VsTEa",
           "time": 3110,
           "original_time": "00:51:50"
-        },
-        {
-          "song_id": "H_BQim150PW",
-          "time": 3480,
-          "original_time": "00:58:00"
         }
       ]
     },

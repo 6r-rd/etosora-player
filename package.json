@@ -54,7 +54,7 @@
     "vaul": "^1.1.2"
   },
   "devDependencies": {
-    "@types/node": "^25.5.0",
+    "@types/node": "^25.5.2",
     "@vitest/coverage-v8": "4.1.5",
     "@vitest/ui": "4.1.5",
     "ajv": "^8.20.0",

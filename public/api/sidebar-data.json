@@ -2815,13 +2815,6 @@
       "artist_ids": [
         "Qp6L-tM7gY2"
       ]
-    },
-    {
-      "song_id": "HCKa7ay9YLl",
-      "title": "告知",
-      "artist_ids": [
-        "7moC3syhBUB"
-      ]
     }
   ],
   "artists": {
@@ -4624,11 +4617,6 @@
           "song_id": "RFqgozbvfZV",
           "time": 3344,
           "original_time": "00:55:44"
-        },
-        {
-          "song_id": "HCKa7ay9YLl",
-          "time": 3806,
-          "original_time": "01:03:26"
         }
       ]
     },

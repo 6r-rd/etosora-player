@@ -4337,6 +4337,44 @@
       ]
     },
     {
+      "video_id": "BFdGRH2g5mU",
+      "title": "【 #歌枠 】ライブ前の【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-06-01T12:08:23Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/BFdGRH2g5mU/maxresdefault.jpg",
+      "timestamps": [
+        {
+          "song_id": "g_C3-eO2s3A",
+          "time": 272,
+          "original_time": "00:04:32"
+        },
+        {
+          "song_id": "XtSKBgisp2U",
+          "time": 1000,
+          "original_time": "00:16:40"
+        },
+        {
+          "song_id": "TyIfF5FwdRf",
+          "time": 1789,
+          "original_time": "00:29:49"
+        },
+        {
+          "song_id": "QoOF1jhPc80",
+          "time": 2178,
+          "original_time": "00:36:18"
+        },
+        {
+          "song_id": "zJWb0O4iPZx",
+          "time": 2469,
+          "original_time": "00:41:09"
+        },
+        {
+          "song_id": "Qkn8WPyqja8",
+          "time": 2821,
+          "original_time": "00:47:01"
+        }
+      ]
+    },
+    {
       "video_id": "BXQ7d78toF4",
       "title": "【 #歌枠 】たまにはファルセットに逃げていいよ【雲梯マシロ】#エトソラ",
       "start_datetime": "2024-04-16T00:17:32Z",

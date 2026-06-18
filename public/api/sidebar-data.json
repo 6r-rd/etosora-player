@@ -2815,6 +2815,20 @@
       "artist_ids": [
         "Qp6L-tM7gY2"
       ]
+    },
+    {
+      "song_id": "szv-tEJQt90",
+      "title": "クスシキ",
+      "artist_ids": [
+        "HuWW_lFmf2l"
+      ]
+    },
+    {
+      "song_id": "VLrnyiA1id9",
+      "title": "天ノ弱",
+      "artist_ids": [
+        "nPmJT79SWz-"
+      ]
     }
   ],
   "artists": {
@@ -6985,6 +6999,59 @@
           "song_id": "l-OxN_YAbMr",
           "time": 921,
           "original_time": "00:15:21"
+        }
+      ]
+    },
+    {
+      "video_id": "dTUyRQAhRgs",
+      "title": "【 #歌枠 】すっぽかしてごめん【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-06-18T02:24:23Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/dTUyRQAhRgs/maxresdefault.jpg",
+      "timestamps": [
+        {
+          "song_id": "flVbtDzCp-o",
+          "time": 252,
+          "original_time": "00:04:12"
+        },
+        {
+          "song_id": "szv-tEJQt90",
+          "time": 544,
+          "original_time": "00:09:04"
+        },
+        {
+          "song_id": "Lyu4U05b3Hp",
+          "time": 1090,
+          "original_time": "00:18:10"
+        },
+        {
+          "song_id": "KukkngAfthi",
+          "time": 1509,
+          "original_time": "00:25:09"
+        },
+        {
+          "song_id": "i0sbQDEddMk",
+          "time": 1868,
+          "original_time": "00:31:08"
+        },
+        {
+          "song_id": "VLrnyiA1id9",
+          "time": 2221,
+          "original_time": "00:37:01"
+        },
+        {
+          "song_id": "9TuG3r6mMMV",
+          "time": 2434,
+          "original_time": "00:40:34"
+        },
+        {
+          "song_id": "WRbtFeMRrQg",
+          "time": 2817,
+          "original_time": "00:46:57"
+        },
+        {
+          "song_id": "I4tcwc9Hsmy",
+          "time": 3208,
+          "original_time": "00:53:28"
         }
       ]
     },

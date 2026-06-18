@@ -156,12 +156,11 @@
       "name": "蝶々P"
     },
     {
-      "artist_id": "J1gH-pT8F3s",
-      "name": "ほえほえP"
-    },
-    {
       "artist_id": "K0fG-pT9E2s",
-      "name": "ナノウ"
+      "name": "ナノウ",
+      "aliases": [
+        "ほえほえP"
+      ]
     },
     {
       "artist_id": "kUR5df_kxXi",
@@ -681,10 +680,6 @@
     {
       "artist_id": "YNl0uhwIPkb",
       "name": "レフティーモンスター"
-    },
-    {
-      "artist_id": "v1qfQMch7tX",
-      "name": "手蔦葵"
     },
     {
       "artist_id": "j1v3eGbXdVK",

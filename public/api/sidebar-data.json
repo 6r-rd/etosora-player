@@ -1154,7 +1154,7 @@
     },
     {
       "song_id": "HR86tW8TLmn",
-      "title": "天の弱",
+      "title": "天ノ弱",
       "artist_ids": [
         "nPmJT79SWz-"
       ]
@@ -2821,13 +2821,6 @@
       "title": "クスシキ",
       "artist_ids": [
         "HuWW_lFmf2l"
-      ]
-    },
-    {
-      "song_id": "VLrnyiA1id9",
-      "title": "天ノ弱",
-      "artist_ids": [
-        "nPmJT79SWz-"
       ]
     }
   ],
@@ -7034,7 +7027,7 @@
           "original_time": "00:31:08"
         },
         {
-          "song_id": "VLrnyiA1id9",
+          "song_id": "HR86tW8TLmn",
           "time": 2221,
           "original_time": "00:37:01"
         },

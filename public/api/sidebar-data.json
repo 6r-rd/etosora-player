@@ -2794,6 +2794,27 @@
       "artist_ids": [
         "HuWW_lFmf2l"
       ]
+    },
+    {
+      "song_id": "20oOqfJjl_8",
+      "title": "星間飛行",
+      "artist_ids": [
+        "D3qL-tM6R8s"
+      ]
+    },
+    {
+      "song_id": "eaXWGhY4suw",
+      "title": "メリッサ",
+      "artist_ids": [
+        "EB-WjHHCpcN"
+      ]
+    },
+    {
+      "song_id": "qaNx4ybazUr",
+      "title": "Fire◎Flower (Sparkler Ver.)",
+      "artist_ids": [
+        "iU6uStdeNzR"
+      ]
     }
   ],
   "artists": {
@@ -3031,7 +3052,8 @@
     "565_7AIBZrs": "うたたP",
     "r33wnLEe2ka": "歪P",
     "yx52YlQ_nGS": "くちばしP",
-    "A59MnRZM4SP": "HANA"
+    "A59MnRZM4SP": "HANA",
+    "EB-WjHHCpcN": "ポルノグラフィティ"
   },
   "videos": [
     {
@@ -4846,6 +4868,54 @@
           "song_id": "PoFyuC7G3XH",
           "time": 3858,
           "original_time": "01:04:18"
+        }
+      ]
+    },
+    {
+      "video_id": "HhYU88xgn5g",
+      "title": "【 #歌枠 】ライブ前の【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-07-14T01:29:22Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/HhYU88xgn5g/maxresdefault.jpg",
+      "timestamps": [
+        {
+          "song_id": "RFqgozbvfZV",
+          "time": 527,
+          "original_time": "00:08:47"
+        },
+        {
+          "song_id": "g_C3-eO2s3A",
+          "time": 976,
+          "original_time": "00:16:16"
+        },
+        {
+          "song_id": "zDiZOwIF1qi",
+          "time": 1455,
+          "original_time": "00:24:15"
+        },
+        {
+          "song_id": "20oOqfJjl_8",
+          "time": 1870,
+          "original_time": "00:31:10"
+        },
+        {
+          "song_id": "eaXWGhY4suw",
+          "time": 2276,
+          "original_time": "00:37:56"
+        },
+        {
+          "song_id": "yLT8cV-tLdj",
+          "time": 2833,
+          "original_time": "00:47:13"
+        },
+        {
+          "song_id": "qaNx4ybazUr",
+          "time": 3229,
+          "original_time": "00:53:49"
+        },
+        {
+          "song_id": "Ek9NmMvSihA",
+          "time": 3526,
+          "original_time": "00:58:46"
         }
       ]
     },

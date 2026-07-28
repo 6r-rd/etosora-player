@@ -2815,6 +2815,48 @@
       "artist_ids": [
         "iU6uStdeNzR"
       ]
+    },
+    {
+      "song_id": "pcf6zhX2QvV",
+      "title": "プラネテス (Re)",
+      "artist_ids": [
+        "n5Hs-Jb4Q2z"
+      ]
+    },
+    {
+      "song_id": "7xwu6_aFkix",
+      "title": "憂、燦々 (ヨルシカ ver)",
+      "artist_ids": [
+        "lrXn9YFKW61"
+      ]
+    },
+    {
+      "song_id": "dfHQiGd-9j-",
+      "title": "終わりへ向かう始まりの歌",
+      "artist_ids": [
+        "BVpQ-X2W8PZ"
+      ]
+    },
+    {
+      "song_id": "Ip8w7t1b90f",
+      "title": "7/18 クラウドフェス 第4幕 振り返り",
+      "artist_ids": [
+        "7moC3syhBUB"
+      ]
+    },
+    {
+      "song_id": "RKcleonbeLN",
+      "title": "7/24 眠れぬ夜に寄り添う歌枠リレー 3rd 振り返り",
+      "artist_ids": [
+        "7moC3syhBUB"
+      ]
+    },
+    {
+      "song_id": "dyQT9fS7G1M",
+      "title": "近々告知が出るかも",
+      "artist_ids": [
+        "7moC3syhBUB"
+      ]
     }
   ],
   "artists": {
@@ -4331,6 +4373,69 @@
           "song_id": "W4qS-bZ9Y3x",
           "time": 3900,
           "original_time": "01:05:00"
+        }
+      ]
+    },
+    {
+      "video_id": "AdNl45Bq4M4",
+      "title": "【 #歌枠 】7月最後の【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-07-26T12:45:28Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/AdNl45Bq4M4/maxresdefault_live.jpg",
+      "timestamps": [
+        {
+          "song_id": "pcf6zhX2QvV",
+          "time": 317,
+          "original_time": "00:05:17"
+        },
+        {
+          "song_id": "7xwu6_aFkix",
+          "time": 601,
+          "original_time": "00:10:01"
+        },
+        {
+          "song_id": "FpMpMum4zJt",
+          "time": 1048,
+          "original_time": "00:17:28"
+        },
+        {
+          "song_id": "3bh8XlQFwIX",
+          "time": 1358,
+          "original_time": "00:22:38"
+        },
+        {
+          "song_id": "KU5YgGWhgzT",
+          "time": 1792,
+          "original_time": "00:29:52"
+        },
+        {
+          "song_id": "u3tdGNT_J_V",
+          "time": 2215,
+          "original_time": "00:36:55"
+        },
+        {
+          "song_id": "TZyuCVZXoNA",
+          "time": 2717,
+          "original_time": "00:45:17"
+        },
+        {
+          "song_id": "dfHQiGd-9j-",
+          "time": 3117,
+          "original_time": "00:51:57"
+        },
+        {
+          "song_id": "Ip8w7t1b90f",
+          "time": 3320,
+          "original_time": "00:55:20"
+        },
+        {
+          "song_id": "RKcleonbeLN",
+          "time": 4643,
+          "original_time": "01:17:23"
+        },
+        {
+          "song_id": "dyQT9fS7G1M",
+          "time": 5951,
+          "original_time": "01:39:11"
         }
       ]
     },

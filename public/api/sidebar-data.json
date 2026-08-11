@@ -2822,6 +2822,13 @@
       "artist_ids": [
         "BVpQ-X2W8PZ"
       ]
+    },
+    {
+      "song_id": "CwtQ7WOUYWO",
+      "title": "HOT LIMIT",
+      "artist_ids": [
+        "JK0DTPICwBy"
+      ]
     }
   ],
   "artists": {
@@ -3060,7 +3067,8 @@
     "r33wnLEe2ka": "歪P",
     "yx52YlQ_nGS": "くちばしP",
     "A59MnRZM4SP": "HANA",
-    "EB-WjHHCpcN": "ポルノグラフィティ"
+    "EB-WjHHCpcN": "ポルノグラフィティ",
+    "JK0DTPICwBy": "T.M.Revolution"
   },
   "videos": [
     {
@@ -4065,6 +4073,54 @@
           "song_id": "OPYIkt6RIrz",
           "time": 7088,
           "original_time": "01:58:08"
+        }
+      ]
+    },
+    {
+      "video_id": "8OUMhrFqK-M",
+      "title": "【 #歌枠 】お休みさいこ～～～～【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-08-10T01:21:40Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/8OUMhrFqK-M/maxresdefault_live.jpg",
+      "timestamps": [
+        {
+          "song_id": "flVbtDzCp-o",
+          "time": 291,
+          "original_time": "00:04:51"
+        },
+        {
+          "song_id": "I4WmhG6i8sJ",
+          "time": 803,
+          "original_time": "00:13:23"
+        },
+        {
+          "song_id": "rBSoD6_uPTP",
+          "time": 1511,
+          "original_time": "00:25:11"
+        },
+        {
+          "song_id": "-04C6Oe7CMd",
+          "time": 1791,
+          "original_time": "00:29:51"
+        },
+        {
+          "song_id": "XP1hvGe3xqC",
+          "time": 2107,
+          "original_time": "00:35:07"
+        },
+        {
+          "song_id": "CwtQ7WOUYWO",
+          "time": 2645,
+          "original_time": "00:44:05"
+        },
+        {
+          "song_id": "InhB0FSbLyR",
+          "time": 2904,
+          "original_time": "00:48:24"
+        },
+        {
+          "song_id": "r7yK5DtpId8",
+          "time": 3326,
+          "original_time": "00:55:26"
         }
       ]
     },

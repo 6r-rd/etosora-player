@@ -2843,6 +2843,13 @@
       "artist_ids": [
         "kUR5df_kxXi"
       ]
+    },
+    {
+      "song_id": "2Vyn55WXJQv",
+      "title": "死ぬな！",
+      "artist_ids": [
+        "klPuBIc5q8V"
+      ]
     }
   ],
   "artists": {
@@ -3083,7 +3090,8 @@
     "A59MnRZM4SP": "HANA",
     "EB-WjHHCpcN": "ポルノグラフィティ",
     "JK0DTPICwBy": "T.M.Revolution",
-    "n-Gm4r8TXiy": "日食なつこ"
+    "n-Gm4r8TXiy": "日食なつこ",
+    "klPuBIc5q8V": "こっちのけんと"
   },
   "videos": [
     {
@@ -8712,6 +8720,44 @@
           "song_id": "_8JYQ4sftw9",
           "time": 4136,
           "original_time": "01:08:56"
+        }
+      ]
+    },
+    {
+      "video_id": "rLrLG-ZcmdY",
+      "title": "【 #歌枠 】残暑【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-09-08T01:50:44Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/rLrLG-ZcmdY/maxresdefault.jpg",
+      "timestamps": [
+        {
+          "song_id": "2Vyn55WXJQv",
+          "time": 499,
+          "original_time": "00:08:19"
+        },
+        {
+          "song_id": "z0sN056E0N9",
+          "time": 870,
+          "original_time": "00:14:30"
+        },
+        {
+          "song_id": "v6Dk6tck-BH",
+          "time": 1185,
+          "original_time": "00:19:45"
+        },
+        {
+          "song_id": "y0Duc9N-Ex2",
+          "time": 2212,
+          "original_time": "00:36:52"
+        },
+        {
+          "song_id": "kHMLhDLf_bU",
+          "time": 2950,
+          "original_time": "00:49:10"
+        },
+        {
+          "song_id": "g_C3-eO2s3A",
+          "time": 3408,
+          "original_time": "00:56:48"
         }
       ]
     },

@@ -2850,6 +2850,13 @@
       "artist_ids": [
         "klPuBIc5q8V"
       ]
+    },
+    {
+      "song_id": "9BzobMd4sif",
+      "title": "ルーマー",
+      "artist_ids": [
+        "AzaUNKxGgzP"
+      ]
     }
   ],
   "artists": {
@@ -3615,6 +3622,49 @@
           "song_id": "X5jM-qT4F7s",
           "time": 2853,
           "original_time": "00:47:33"
+        }
+      ]
+    },
+    {
+      "video_id": "5Y8rJoBMAJg",
+      "title": "【 #歌枠 】シルバーウィークとかいう連休のまんなか【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-09-22T01:15:08Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/5Y8rJoBMAJg/maxresdefault.jpg",
+      "timestamps": [
+        {
+          "song_id": "9BzobMd4sif",
+          "time": 311,
+          "original_time": "00:05:11"
+        },
+        {
+          "song_id": "d3ylAbSFKUP",
+          "time": 990,
+          "original_time": "00:16:30"
+        },
+        {
+          "song_id": "R5xGGD7b3cv",
+          "time": 1179,
+          "original_time": "00:19:39"
+        },
+        {
+          "song_id": "jBxu9qyJGlB",
+          "time": 1750,
+          "original_time": "00:29:10"
+        },
+        {
+          "song_id": "Kv_lLWMLIEL",
+          "time": 2420,
+          "original_time": "00:40:20"
+        },
+        {
+          "song_id": "Lyu4U05b3Hp",
+          "time": 2734,
+          "original_time": "00:45:34"
+        },
+        {
+          "song_id": "TNvcPGL2e0f",
+          "time": 3394,
+          "original_time": "00:56:34"
         }
       ]
     },

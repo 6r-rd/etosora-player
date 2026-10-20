@@ -4628,6 +4628,44 @@
       ]
     },
     {
+      "video_id": "C9WS5ISrlfg",
+      "title": "【 #歌枠 】毎日お疲れ様です【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-10-20T01:39:04Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/C9WS5ISrlfg/maxresdefault.jpg",
+      "timestamps": [
+        {
+          "song_id": "a0T8FGXcFDZ",
+          "time": 436,
+          "original_time": "00:07:16"
+        },
+        {
+          "song_id": "aMzWRmmOKzR",
+          "time": 726,
+          "original_time": "00:12:06"
+        },
+        {
+          "song_id": "Ak4F6xfCb5W",
+          "time": 1159,
+          "original_time": "00:19:19"
+        },
+        {
+          "song_id": "nwdXWNHmOFq",
+          "time": 1805,
+          "original_time": "00:30:05"
+        },
+        {
+          "song_id": "X2ICBMk8_BE",
+          "time": 2382,
+          "original_time": "00:39:42"
+        },
+        {
+          "song_id": "z66WOt1EKQX",
+          "time": 2843,
+          "original_time": "00:47:23"
+        }
+      ]
+    },
+    {
       "video_id": "CL05qwB5ATE",
       "title": "【 2周年記念 】✧ エトソラ2周年記念配信 ✧【エトソラ/EtoSora】",
       "start_datetime": "2026-01-18T01:24:07Z",

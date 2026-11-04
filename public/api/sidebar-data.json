@@ -2857,6 +2857,13 @@
       "artist_ids": [
         "AzaUNKxGgzP"
       ]
+    },
+    {
+      "song_id": "ejIwJMM6rAq",
+      "title": "あぶく",
+      "artist_ids": [
+        "Qp6L-tM7gY2"
+      ]
     }
   ],
   "artists": {
@@ -5032,6 +5039,49 @@
           "song_id": "R5xGGD7b3cv",
           "time": 4552,
           "original_time": "01:15:52"
+        }
+      ]
+    },
+    {
+      "video_id": "G2-f_Nw4QHU",
+      "title": "【 #歌枠 】文化の日【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-11-04T01:53:52Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/G2-f_Nw4QHU/maxresdefault.jpg",
+      "timestamps": [
+        {
+          "song_id": "6D3d1z5cbr0",
+          "time": 319,
+          "original_time": "00:05:19"
+        },
+        {
+          "song_id": "ejIwJMM6rAq",
+          "time": 1046,
+          "original_time": "00:17:26"
+        },
+        {
+          "song_id": "03DUm9oigh9",
+          "time": 1553,
+          "original_time": "00:25:53"
+        },
+        {
+          "song_id": "LXS-Jjnmt24",
+          "time": 2278,
+          "original_time": "00:37:58"
+        },
+        {
+          "song_id": "Zd08XfAdL_q",
+          "time": 2599,
+          "original_time": "00:43:19"
+        },
+        {
+          "song_id": "HR86tW8TLmn",
+          "time": 2936,
+          "original_time": "00:48:56"
+        },
+        {
+          "song_id": "REmuQ_GTUoW",
+          "time": 3461,
+          "original_time": "00:57:41"
         }
       ]
     },

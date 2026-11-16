@@ -2864,6 +2864,13 @@
       "artist_ids": [
         "Qp6L-tM7gY2"
       ]
+    },
+    {
+      "song_id": "7Hd5JqD25fV",
+      "title": "二息歩行 (Reloaded)",
+      "artist_ids": [
+        "VAI14SAAkzA"
+      ]
     }
   ],
   "artists": {
@@ -6827,6 +6834,49 @@
           "song_id": "eT27LweSpYV",
           "time": 3330,
           "original_time": "00:55:30"
+        }
+      ]
+    },
+    {
+      "video_id": "Zy6GZgyupVk",
+      "title": "【 #歌枠 】気温は低いけど心はぽかぽか【雲梯マシロ】#エトソラ",
+      "start_datetime": "2026-11-15T11:59:07Z",
+      "thumbnail_url": "https://i.ytimg.com/vi/Zy6GZgyupVk/maxresdefault.jpg?v=6af99e8d",
+      "timestamps": [
+        {
+          "song_id": "ejIwJMM6rAq",
+          "time": 825,
+          "original_time": "00:13:45"
+        },
+        {
+          "song_id": "9BzobMd4sif",
+          "time": 1160,
+          "original_time": "00:19:20"
+        },
+        {
+          "song_id": "BC4T8tDgKOK",
+          "time": 1488,
+          "original_time": "00:24:48"
+        },
+        {
+          "song_id": "7b8lAK9sy5q",
+          "time": 1778,
+          "original_time": "00:29:38"
+        },
+        {
+          "song_id": "U4BrDcvo3CQ",
+          "time": 2163,
+          "original_time": "00:36:03"
+        },
+        {
+          "song_id": "7Hd5JqD25fV",
+          "time": 2900,
+          "original_time": "00:48:20"
+        },
+        {
+          "song_id": "igMgIzFY4sT",
+          "time": 3286,
+          "original_time": "00:54:46"
         }
       ]
     },
